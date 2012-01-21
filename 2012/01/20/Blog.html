@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+   <title>Blogging for the Nerd</title>
+
+   <!-- syntax highlighting CSS -->
+   <link rel="stylesheet" href="/css/syntax.css" type="text/css" />
+
+   <!-- Homepage CSS -->
+   <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+
+</head>
+<body>
+
+<!-- ClickTale Top part -->
+<script type="text/javascript">
+var WRInitTime=(new Date()).getTime();
+</script>
+<!-- ClickTale end of Top part -->
+
+<div class="site">
+  <div class="title">
+    Luke Campbell &lt; <a href='mailto:luke.s.campbell@gmail.com'>luke.s.campbell@gmail.com</a> &gt;
+  </div>
+  
+  <div id="post">
+<h1>Blogging for the Nerd</h1>
+
+<p> <p class='meta'>20 January 2012</p></p>
+
+<p>So, I've been debating for a while now how to get this blog out there. My first blog system (which no one ever visited) was a LAMP (Linux, Apache, MySQL and PHP), whereby the entire blog was created and dynamically generated with PHP. The dynamic blogging system was fun but it became really bogged down as more posts were added.</p>
+
+<p>Enter static blogging. A number of people I know swear by static blogging and with powerful tools like Rails, Sinatra and Git, blogging in the 21st century can be magnificent!</p>
+
+<p>First things first:</p>
+
+<h2><a href='http://joshuawood.net/how-to-deploy-jekyll-slash-octopress-to-heroku/'>How to Deploy Jekyll/Octopress to Heroku</a></h2>
+
+
+<p>This article is a great place to start and a lot of what I'm saying here is re-iterated.</p>
+
+<p>Get jekyll:</p>
+
+<pre>
+    $ gem install jekyll
+</pre>
+
+
+<p>Get your own jekyll layout:</p>
+
+<pre>
+    $ git clone https://github.com/mojombo/mojombo.github.com.git 
+</pre>
+
+
+<p>You can rename your repository or do with it what you like, personally I renamed it. For the purpose of this article let's rename it to my_blog and change a few things:</p>
+
+<p>Make changes to your <b>index.html</b> to fit your needs. Now comes the posts section! Erase all the files in <b>_posts</b>, then go ahead and populate them with your own .md files.</p>
+
+</div>
+
+<div id="related">
+  <h2>Related Posts</h2>
+  <ul class="posts">
+    
+      <li><span>21 Jan 2012</span> &raquo; <a href="/2012/01/21/Applescript.html">AppleScript and Copying</a></li>
+    
+      <li><span>16 Jan 2012</span> &raquo; <a href="/2012/01/16/Win.html">For The Win</a></li>
+    
+      <li><span>01 Jan 2012</span> &raquo; <a href="/2012/01/01/Welcome.html">Welcome to Nerd Spot</a></li>
+    
+  </ul>
+</div>
+  
+
+
+
+<!-- ClickTale Bottom part -->
+<div id="ClickTaleDiv" style="display: none;"></div>
+<script type="text/javascript">
+if(document.location.protocol!='https:')
+  document.write(unescape("%3Cscript%20src='http://s.clicktale.net/WRb.js'%20type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+if(typeof ClickTale=='function') ClickTale(206,0.3,"www03");
+</script>
+<!-- ClickTale end of Bottom part -->
+
+<!-- Google Analytics -->
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+var pageTracker = _gat._getTracker("UA-6016902-1");
+pageTracker._trackPageview();
+</script>
+<!-- Google Analytics end -->
+
+</body>
+</html>

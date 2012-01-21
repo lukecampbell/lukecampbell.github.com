@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+ 
+ <title>Tom Preston-Werner</title>
+ <link href="http://tom.preston-werner.com/atom.xml" rel="self"/>
+ <link href="http://tom.preston-werner.com/"/>
+ <updated>2012-01-21T15:23:35-05:00</updated>
+ <id>http://tom.preston-werner.com/</id>
+ <author>
+   <name>Tom Preston-Werner</name>
+   <email>tom@mojombo.com</email>
+ </author>
+
+ 
+ <entry>
+   <title>AppleScript and Copying</title>
+   <link href="http://tom.preston-werner.com/2012/01/21/Applescript.html"/>
+   <updated>2012-01-21T00:00:00-05:00</updated>
+   <id>http://tom.preston-werner.com/2012/01/21/Applescript</id>
+   <content type="html">&lt;h1&gt;AppleScript and Copying&lt;/h1&gt;
+
+&lt;p&gt; &lt;p class='meta'&gt;21 January 2012&lt;/p&gt;
+Oh my lord! I cannot begin to tell you how much of a pain I have experienced trying to do the most simple task one can do! What I wanted to do was simply to &lt;b&gt;copy a file&lt;/b&gt; to a destination while having a window display the status of the transfer (using Finder's copying window). Seeing as how I've had some experience working on a Mac, the obvious choice is Applescript.&lt;/p&gt;
+
+&lt;p&gt;I have a local NFS server that has various files I work with and I wanted to be able to see a window of the file copying to the local file system, on Linux the solution was quite simple however on here the solution was a little obfuscated in Applescript. After several hours of tinkering and tweaking I came up with this:&lt;/p&gt;
+
+&lt;p&gt;&lt;i&gt;gcopy&lt;/i&gt;&lt;/p&gt;
+
+&lt;pre&gt;
+    #!/bin/bash
+
+    osascript&amp;lt;&amp;lt;EOF
+    tell application &amp;quot;Finder&amp;quot;
+      set sfile to (POSIX file &amp;quot;$PWD/$1&amp;quot;)
+      set sdest to (POSIX file &amp;quot;$2&amp;quot;)
+      duplicate file sfile to folder sdest with replacing
+    end tell
+    EOF
+&lt;/pre&gt;
+
+
+&lt;p&gt;Obviously there's room for a LOT of improvement here. I think that with some assistance from my friend Ruby I might be able to make something really nice, unfortunately Applescript doesn't like me one bit!&lt;/p&gt;
+
+&lt;p&gt;The things to watch out for this difference between Posix paths and HFS Paths (which Applescript) understands. &lt;a href=&quot;http://whitefiles.org/b1_s/1_free_guides/fg3mo/pgs/v03.htm&quot;&gt;Here is a nice tutorial&lt;/a&gt; on dealing with folders in Applescript, as well as the POSIX conversion technique I adopted from &lt;a href='http://en.wikibooks.org/wiki/AppleScript_Programming/Aliases_and_paths'&gt;here&lt;/a&gt;.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Blogging for the Nerd</title>
+   <link href="http://tom.preston-werner.com/2012/01/20/Blog.html"/>
+   <updated>2012-01-20T00:00:00-05:00</updated>
+   <id>http://tom.preston-werner.com/2012/01/20/Blog</id>
+   <content type="html">&lt;h1&gt;Blogging for the Nerd&lt;/h1&gt;
+
+&lt;p&gt; &lt;p class='meta'&gt;20 January 2012&lt;/p&gt;&lt;/p&gt;
+
+&lt;p&gt;So, I've been debating for a while now how to get this blog out there. My first blog system (which no one ever visited) was a LAMP (Linux, Apache, MySQL and PHP), whereby the entire blog was created and dynamically generated with PHP. The dynamic blogging system was fun but it became really bogged down as more posts were added.&lt;/p&gt;
+
+&lt;p&gt;Enter static blogging. A number of people I know swear by static blogging and with powerful tools like Rails, Sinatra and Git, blogging in the 21st century can be magnificent!&lt;/p&gt;
+
+&lt;p&gt;First things first:&lt;/p&gt;
+
+&lt;h2&gt;&lt;a href='http://joshuawood.net/how-to-deploy-jekyll-slash-octopress-to-heroku/'&gt;How to Deploy Jekyll/Octopress to Heroku&lt;/a&gt;&lt;/h2&gt;
+
+
+&lt;p&gt;This article is a great place to start and a lot of what I'm saying here is re-iterated.&lt;/p&gt;
+
+&lt;p&gt;Get jekyll:&lt;/p&gt;
+
+&lt;pre&gt;
+    $ gem install jekyll
+&lt;/pre&gt;
+
+
+&lt;p&gt;Get your own jekyll layout:&lt;/p&gt;
+
+&lt;pre&gt;
+    $ git clone https://github.com/mojombo/mojombo.github.com.git 
+&lt;/pre&gt;
+
+
+&lt;p&gt;You can rename your repository or do with it what you like, personally I renamed it. For the purpose of this article let's rename it to my_blog and change a few things:&lt;/p&gt;
+
+&lt;p&gt;Make changes to your &lt;b&gt;index.html&lt;/b&gt; to fit your needs. Now comes the posts section! Erase all the files in &lt;b&gt;_posts&lt;/b&gt;, then go ahead and populate them with your own .md files.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ <entry>
+   <title>For The Win</title>
+   <link href="http://tom.preston-werner.com/2012/01/16/Win.html"/>
+   <updated>2012-01-16T00:00:00-05:00</updated>
+   <id>http://tom.preston-werner.com/2012/01/16/Win</id>
+   <content type="html">&lt;h1&gt;For The Win&lt;/h1&gt;
+
+&lt;p class=&quot;meta&quot;&gt;16 January 2011&lt;/p&gt;
+
+
+&lt;p&gt;There is nothing quite like that thrill, when you've been hacking away at a problem for a while and in that singularity when everything comes together in one beautiful compilation. Working with multiple people, in multiple teams on multiple modules can be extremely frustrating and incredibly challenging. I offer a few observations that have aided me in the past couple of weeks.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Choose an arbiter for your team.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Have someone who can be the focal point to interact with outside members if possible.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Use git&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Git has saved countless hours of pain and suffering.&lt;/li&gt;
+&lt;li&gt;Git has also CAUSED several hours of pain and headache because of our lack of understanding on how to use it best.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Set short achievable goals&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Make frequent short term achievable goals that move in the right direction&lt;/li&gt;
+&lt;li&gt;Start with unit testing / TDD&lt;/li&gt;
+&lt;li&gt;After the pieces are implemented, start focusing on integration and integration testing.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Don't run independent ops&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Going off on your own without anyone knowing what you're working on can truly be miserable for everyone!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+
+</content>
+ </entry>
+ 
+ <entry>
+   <title>Welcome to Nerd Spot</title>
+   <link href="http://tom.preston-werner.com/2012/01/01/Welcome.html"/>
+   <updated>2012-01-01T00:00:00-05:00</updated>
+   <id>http://tom.preston-werner.com/2012/01/01/Welcome</id>
+   <content type="html">&lt;div align='center'&gt;&lt;h1&gt;Nerd Spot&lt;/h1&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Welcome to Nerd Spot, the spot where I, the nerd, post small blogs and tutorials to increase your productivity.&lt;/p&gt;
+</content>
+ </entry>
+ 
+ 
+</feed>
