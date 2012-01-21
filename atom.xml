@@ -4,7 +4,7 @@
  <title>Tom Preston-Werner</title>
  <link href="http://tom.preston-werner.com/atom.xml" rel="self"/>
  <link href="http://tom.preston-werner.com/"/>
- <updated>2012-01-21T15:23:35-05:00</updated>
+ <updated>2012-01-21T16:10:03-05:00</updated>
  <id>http://tom.preston-werner.com/</id>
  <author>
    <name>Tom Preston-Werner</name>
@@ -82,6 +82,66 @@ Oh my lord! I cannot begin to tell you how much of a pain I have experienced try
 &lt;p&gt;You can rename your repository or do with it what you like, personally I renamed it. For the purpose of this article let's rename it to my_blog and change a few things:&lt;/p&gt;
 
 &lt;p&gt;Make changes to your &lt;b&gt;index.html&lt;/b&gt; to fit your needs. Now comes the posts section! Erase all the files in &lt;b&gt;_posts&lt;/b&gt;, then go ahead and populate them with your own .md files.&lt;/p&gt;
+
+&lt;p&gt;Typically your posts look like this:&lt;/p&gt;
+
+&lt;pre&gt;
+---&amp;#xa;layout: post&amp;#xa;title: Blogging for the Nerd&amp;#xa;---&amp;#xa;&amp;#xa;&amp;#123;&amp;#123; page.title &amp;#125;&amp;#125;&amp;#xa;================&amp;#xa;Your content goes here.
+&lt;/pre&gt;
+
+
+&lt;p&gt;Now comes the rakefile, adopting from the above tutorial I have tweaked something into this:&lt;/p&gt;
+
+&lt;h2&gt;Rakefile&lt;/h2&gt;
+
+&lt;pre&gt;
+# Rakefile&amp;#xa;&amp;#xa;require &amp;#x27;time&amp;#x27;&amp;#xa;&amp;#xa;deploy_default = &amp;#x22;heroku&amp;#x22;&amp;#xa;deploy_branch = &amp;#x22;master&amp;#x22;&amp;#xa;deploy_dir = &amp;#x22;_heroku&amp;#x22;&amp;#xa;public_dir = &amp;#x27;_site&amp;#x27;&amp;#xa;github_dir = &amp;#x27;_github&amp;#x27;&amp;#xa;jekyll_path = &amp;#x27;~/Workspace/jekyll/bin/jekyll&amp;#x27;&amp;#xa;app_name = &amp;#x27;your_heroku_app_name&amp;#x27;&amp;#xa;&amp;#xa;desc &amp;#x22;deploy basic rack app to heroku&amp;#x22;&amp;#xa;multitask :heroku do&amp;#xa;  puts &amp;#x22;## Deploying to Heroku &amp;#x22;&amp;#xa;  (Dir[&amp;#x22;#&amp;#123;deploy_dir}/public/*&amp;#x22;]).each &amp;#123; |f| rm_rf(f) }&amp;#xa;  system &amp;#x22;cp -R #&amp;#123;public_dir}/* #&amp;#123;deploy_dir}/public&amp;#x22;&amp;#xa;  puts &amp;#x22;&amp;#xa;## copying #&amp;#123;public_dir} to #&amp;#123;deploy_dir}/public&amp;#x22;&amp;#xa;  cd &amp;#x22;#&amp;#123;deploy_dir}&amp;#x22; do&amp;#xa;    system &amp;#x22;git add .&amp;#x22;&amp;#xa;    system &amp;#x22;git add -u&amp;#x22;&amp;#xa;    puts &amp;#x22;&amp;#xa;## Committing: Site updated at #&amp;#123;Time.now.utc}&amp;#x22;&amp;#xa;    message = &amp;#x22;Site updated at #&amp;#123;Time.now.utc}&amp;#x22;&amp;#xa;    system &amp;#x22;git commit -m &amp;#x27;#&amp;#123;message}&amp;#x27;&amp;#x22;&amp;#xa;    puts &amp;#x22;&amp;#xa;## Pushing generated #&amp;#123;deploy_dir} website&amp;#x22;&amp;#xa;    system &amp;#x22;git push heroku #&amp;#123;deploy_branch}&amp;#x22;&amp;#xa;    puts &amp;#x22;&amp;#xa;## Heroku deploy complete&amp;#x22;&amp;#xa;  end&amp;#xa;end&amp;#xa;&amp;#xa;multitask :github do&amp;#xa;    puts &amp;#x22;## Deploying to Github &amp;#x22;&amp;#xa;    (Dir[&amp;#x22;#&amp;#123;github_dir}/public/*&amp;#x22;]).each &amp;#123; |f| rm_rf(f) }&amp;#xa;    system &amp;#x22;cp -R #&amp;#123;public_dir}/* #&amp;#123;github_dir}/&amp;#x22;&amp;#xa;    puts &amp;#x22;&amp;#xa;## copying #&amp;#123;public_dir} to #&amp;#123;github_dir}/&amp;#x22;&amp;#xa;    cd &amp;#x22;#&amp;#123;github_dir}&amp;#x22; do&amp;#xa;      system &amp;#x22;git add .&amp;#x22;&amp;#xa;      system &amp;#x22;git add -u&amp;#x22;&amp;#xa;      puts &amp;#x22;&amp;#xa;## Committing: Site updated at #&amp;#123;Time.now.utc}&amp;#x22;&amp;#xa;      message = &amp;#x22;Site updated at #&amp;#123;Time.now.utc}&amp;#x22;&amp;#xa;      system &amp;#x22;git commit -m &amp;#x27;#&amp;#123;message}&amp;#x27;&amp;#x22;&amp;#xa;      puts &amp;#x22;&amp;#xa;## Pushing generated #&amp;#123;github_dir} website&amp;#x22;&amp;#xa;      system &amp;#x22;git push origin #&amp;#123;deploy_branch}&amp;#x22;&amp;#xa;      puts &amp;#x22;&amp;#xa;## Github deploy complete&amp;#x22;&amp;#xa;    end&amp;#xa;  end&amp;#xa;desc &amp;#x27;Generate Layout&amp;#x27;&amp;#xa;task :new_post do&amp;#xa;  t = Time.now&amp;#xa;  d = &amp;#x27;_posts/&amp;#x27; + t.strftime(&amp;#x27;%Y-%m-%d&amp;#x27;) + &amp;#x27;.md&amp;#x27;&amp;#xa;  l = t.strftime(&amp;#x27;%d %B %Y&amp;#x27;)&amp;#xa;  puts &amp;#x27;Generating new post&amp;#x27;&amp;#xa;  layout = &amp;#x3c;&amp;#x3c;DOC&amp;#xa;---&amp;#xa;layout: post&amp;#xa;title: Title&amp;#xa;---&amp;#xa;&amp;#xa;&amp;#123;&amp;#123; page.title }}&amp;#xa;================&amp;#xa;&amp;#xa;DOC&amp;#xa;  layout += &amp;#x22;\n &amp;#x3c;p class=&amp;#x27;meta&amp;#x27;&amp;#x3e;&amp;#x22; + l + &amp;#x22;&amp;#x3c;/p&amp;#x3e;\n&amp;#x22;&amp;#xa;  File.open(d, &amp;#x27;w&amp;#x27;) do |f|&amp;#xa;    f.puts layout&amp;#xa;  end&amp;#xa;  puts &amp;#x27;Created: &amp;#x27; + d&amp;#xa;end&amp;#xa;&amp;#xa;task :launch do&amp;#xa;  system &amp;#x27;open http://&amp;#x27; + app_name&amp;#xa;end&amp;#xa;&amp;#xa;task :jekyll do&amp;#xa;  system jekyll_path + &amp;#x27; --auto --server&amp;#x27;&amp;#xa;end&amp;#xa;&amp;#xa;
+&lt;/pre&gt;
+
+
+&lt;p&gt;So ideally your directory structure should resemble this:&lt;/p&gt;
+
+&lt;h2&gt;Directory Structure&lt;/h2&gt;
+
+&lt;pre&gt;
+  Blogroot
+    |+_github/
+    |~_heroku/
+    | |+public/
+    | |-config.ru
+    | |-Gemfile
+    | `-README
+    |~_layouts/
+    | |-default.html
+    | `-post.html
+    |~_posts/
+    | |-2012-01-01-Welcome.md
+    | |-2012-01-16-Win.md
+    | |-2012-01-20-Blog.md
+    | `-2012-01-21-Applescript.md
+    |+_site/
+    |~css/
+    | |-screen.css
+    | `-syntax.css
+    |~images/
+    | `-rss.png
+    |+random/
+    |-_config.yml
+    |-atom.xml
+    |-CNAME
+    |-index.html
+    |-Rakefile
+    `-README.textile
+
+&lt;/pre&gt;
+
+
+&lt;p&gt;With all this you should be up and running and ready to go!&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;div align='right'&gt;Luke&lt;/div&gt;
+
 </content>
  </entry>
  

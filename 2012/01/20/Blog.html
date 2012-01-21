@@ -58,6 +58,66 @@ var WRInitTime=(new Date()).getTime();
 
 <p>Make changes to your <b>index.html</b> to fit your needs. Now comes the posts section! Erase all the files in <b>_posts</b>, then go ahead and populate them with your own .md files.</p>
 
+<p>Typically your posts look like this:</p>
+
+<pre>
+---&#xa;layout: post&#xa;title: Blogging for the Nerd&#xa;---&#xa;&#xa;&#123;&#123; page.title &#125;&#125;&#xa;================&#xa;Your content goes here.
+</pre>
+
+
+<p>Now comes the rakefile, adopting from the above tutorial I have tweaked something into this:</p>
+
+<h2>Rakefile</h2>
+
+<pre>
+# Rakefile&#xa;&#xa;require &#x27;time&#x27;&#xa;&#xa;deploy_default = &#x22;heroku&#x22;&#xa;deploy_branch = &#x22;master&#x22;&#xa;deploy_dir = &#x22;_heroku&#x22;&#xa;public_dir = &#x27;_site&#x27;&#xa;github_dir = &#x27;_github&#x27;&#xa;jekyll_path = &#x27;~/Workspace/jekyll/bin/jekyll&#x27;&#xa;app_name = &#x27;your_heroku_app_name&#x27;&#xa;&#xa;desc &#x22;deploy basic rack app to heroku&#x22;&#xa;multitask :heroku do&#xa;  puts &#x22;## Deploying to Heroku &#x22;&#xa;  (Dir[&#x22;#&#123;deploy_dir}/public/*&#x22;]).each &#123; |f| rm_rf(f) }&#xa;  system &#x22;cp -R #&#123;public_dir}/* #&#123;deploy_dir}/public&#x22;&#xa;  puts &#x22;&#xa;## copying #&#123;public_dir} to #&#123;deploy_dir}/public&#x22;&#xa;  cd &#x22;#&#123;deploy_dir}&#x22; do&#xa;    system &#x22;git add .&#x22;&#xa;    system &#x22;git add -u&#x22;&#xa;    puts &#x22;&#xa;## Committing: Site updated at #&#123;Time.now.utc}&#x22;&#xa;    message = &#x22;Site updated at #&#123;Time.now.utc}&#x22;&#xa;    system &#x22;git commit -m &#x27;#&#123;message}&#x27;&#x22;&#xa;    puts &#x22;&#xa;## Pushing generated #&#123;deploy_dir} website&#x22;&#xa;    system &#x22;git push heroku #&#123;deploy_branch}&#x22;&#xa;    puts &#x22;&#xa;## Heroku deploy complete&#x22;&#xa;  end&#xa;end&#xa;&#xa;multitask :github do&#xa;    puts &#x22;## Deploying to Github &#x22;&#xa;    (Dir[&#x22;#&#123;github_dir}/public/*&#x22;]).each &#123; |f| rm_rf(f) }&#xa;    system &#x22;cp -R #&#123;public_dir}/* #&#123;github_dir}/&#x22;&#xa;    puts &#x22;&#xa;## copying #&#123;public_dir} to #&#123;github_dir}/&#x22;&#xa;    cd &#x22;#&#123;github_dir}&#x22; do&#xa;      system &#x22;git add .&#x22;&#xa;      system &#x22;git add -u&#x22;&#xa;      puts &#x22;&#xa;## Committing: Site updated at #&#123;Time.now.utc}&#x22;&#xa;      message = &#x22;Site updated at #&#123;Time.now.utc}&#x22;&#xa;      system &#x22;git commit -m &#x27;#&#123;message}&#x27;&#x22;&#xa;      puts &#x22;&#xa;## Pushing generated #&#123;github_dir} website&#x22;&#xa;      system &#x22;git push origin #&#123;deploy_branch}&#x22;&#xa;      puts &#x22;&#xa;## Github deploy complete&#x22;&#xa;    end&#xa;  end&#xa;desc &#x27;Generate Layout&#x27;&#xa;task :new_post do&#xa;  t = Time.now&#xa;  d = &#x27;_posts/&#x27; + t.strftime(&#x27;%Y-%m-%d&#x27;) + &#x27;.md&#x27;&#xa;  l = t.strftime(&#x27;%d %B %Y&#x27;)&#xa;  puts &#x27;Generating new post&#x27;&#xa;  layout = &#x3c;&#x3c;DOC&#xa;---&#xa;layout: post&#xa;title: Title&#xa;---&#xa;&#xa;&#123;&#123; page.title }}&#xa;================&#xa;&#xa;DOC&#xa;  layout += &#x22;\n &#x3c;p class=&#x27;meta&#x27;&#x3e;&#x22; + l + &#x22;&#x3c;/p&#x3e;\n&#x22;&#xa;  File.open(d, &#x27;w&#x27;) do |f|&#xa;    f.puts layout&#xa;  end&#xa;  puts &#x27;Created: &#x27; + d&#xa;end&#xa;&#xa;task :launch do&#xa;  system &#x27;open http://&#x27; + app_name&#xa;end&#xa;&#xa;task :jekyll do&#xa;  system jekyll_path + &#x27; --auto --server&#x27;&#xa;end&#xa;&#xa;
+</pre>
+
+
+<p>So ideally your directory structure should resemble this:</p>
+
+<h2>Directory Structure</h2>
+
+<pre>
+  Blogroot
+    |+_github/
+    |~_heroku/
+    | |+public/
+    | |-config.ru
+    | |-Gemfile
+    | `-README
+    |~_layouts/
+    | |-default.html
+    | `-post.html
+    |~_posts/
+    | |-2012-01-01-Welcome.md
+    | |-2012-01-16-Win.md
+    | |-2012-01-20-Blog.md
+    | `-2012-01-21-Applescript.md
+    |+_site/
+    |~css/
+    | |-screen.css
+    | `-syntax.css
+    |~images/
+    | `-rss.png
+    |+random/
+    |-_config.yml
+    |-atom.xml
+    |-CNAME
+    |-index.html
+    |-Rakefile
+    `-README.textile
+
+</pre>
+
+
+<p>With all this you should be up and running and ready to go!</p>
+
+<hr />
+
+<div align='right'>Luke</div>
+
+
 </div>
 
 <div id="related">
