@@ -4,7 +4,7 @@
  <title>Tom Preston-Werner</title>
  <link href="http://tom.preston-werner.com/atom.xml" rel="self"/>
  <link href="http://tom.preston-werner.com/"/>
- <updated>2012-08-18T14:04:50-04:00</updated>
+ <updated>2012-08-18T14:27:49-04:00</updated>
  <id>http://tom.preston-werner.com/</id>
  <author>
    <name>Tom Preston-Werner</name>
@@ -38,6 +38,15 @@
 &lt;p&gt;I want to provide an interface to everyone to ask questions, and have the data answer it. A dynamic and vast database of information and variables. People ask questions and the data models show the correlation or even the amount of casuation a variable has on another.&lt;/p&gt;
 
 &lt;p&gt;I will keep everyone posted.&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;div align=&quot;center&quot;&gt;
+\[ work^o = \beta_0 + \beta_1 educ + \beta_2 outside + \mathbf{u} \]
+&lt;/div&gt;
+
+
+
 </content>
  </entry>
  
