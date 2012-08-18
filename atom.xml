@@ -4,13 +4,42 @@
  <title>Tom Preston-Werner</title>
  <link href="http://tom.preston-werner.com/atom.xml" rel="self"/>
  <link href="http://tom.preston-werner.com/"/>
- <updated>2012-01-21T16:41:00-05:00</updated>
+ <updated>2012-08-18T14:04:50-04:00</updated>
  <id>http://tom.preston-werner.com/</id>
  <author>
    <name>Tom Preston-Werner</name>
    <email>tom@mojombo.com</email>
  </author>
 
+ 
+ <entry>
+   <title>Conventional Wisdom</title>
+   <link href="http://tom.preston-werner.com/2012/08/18/Conventional-Wisdom.html"/>
+   <updated>2012-08-18T00:00:00-04:00</updated>
+   <id>http://tom.preston-werner.com/2012/08/18/Conventional-Wisdom</id>
+   <content type="html">&lt;h1&gt;Conventional Wisdom&lt;/h1&gt;
+
+&lt;p&gt;This new project that I'm starting is going to decimate conventional wisdom. The goal of this project is to provide real data, real models and a mathematical interpretation to the data that is available to everyone.&lt;/p&gt;
+
+&lt;h2&gt;History&lt;/h2&gt;
+
+&lt;p&gt;The problem with most information on the internet is that it is tainted with speculation, modulated by opinions and personal interests. I aim to bring an economists point of view to this situation.&lt;/p&gt;
+
+&lt;p&gt;A friend, &lt;em&gt;Sean Cowan&lt;/em&gt; and I began to have a string of arguments. We are both very contrarian so the arguments become frequently heated. Soon we both realized that both of our arguments needed proof for the other to concede to our point of view so we set out on a quest over the internet to provide proof. We both found proof of our points.&lt;/p&gt;
+
+&lt;p&gt;How can two arguments both be valid if they conflict? They typically are not. We quickly realized that our sources of information was extremely flawed. The normally credible sources such as the LA Times were lying to us. The ambiguous sources that the writers claim as matter of fact were leading us astray. We started doing our own digging merely out of pride and vanity to prove the other wrong. We soon began to realize that we were both wrong. The actual data shows a story that intersects both of our claims.&lt;/p&gt;
+
+&lt;p&gt;From arguments such as tax reform, should the rich be taxed more? Does more gun control lead to less crime (the answer is no by the way, but that's not the entire story). How much of a factor does education play on expected income values.&lt;/p&gt;
+
+&lt;p&gt;After discovering the flaws of conventional wisdom, we aim to bring our discoveries to everyone.&lt;/p&gt;
+
+&lt;h2&gt;The Goal&lt;/h2&gt;
+
+&lt;p&gt;I want to provide an interface to everyone to ask questions, and have the data answer it. A dynamic and vast database of information and variables. People ask questions and the data models show the correlation or even the amount of casuation a variable has on another.&lt;/p&gt;
+
+&lt;p&gt;I will keep everyone posted.&lt;/p&gt;
+</content>
+ </entry>
  
  <entry>
    <title>AppleScript and Copying</title>
